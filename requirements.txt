@@ -1,6 +1,5 @@
 openai==1.1.1
 python-decouple==3.8
-PyYAML==5.4.1
 PyYAML==6.0.1
 streamlit==1.28.1
 streamlit_authenticator==0.2.3
