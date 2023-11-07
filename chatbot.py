@@ -1,5 +1,5 @@
 import streamlit as st
-#import openai
+import openai
 from streamlit_chat import message
 
 from decouple import config
