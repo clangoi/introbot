@@ -11,6 +11,8 @@ from pathlib import Path
 import yaml
 from yaml.loader import SafeLoader
 
+
+
 #------------------------------------------------------------
 openai.api_key = config("OPENAI_API_KEY")
 with open('./config.yaml') as file:
@@ -38,39 +40,58 @@ if authentication_status == True:
     if user_chat_history not in st.session_state:
         st.session_state[user_chat_history] = []
 
-    if user_generated not in st.session_state:
-        st.session_state[user_generated] = []
+#------------------------------------------------------------
+    def get_session_state():
+    # Crea una instancia de SessionState para cada usuario
+        session_state = st.session_state
+        if not hasattr(session_state, 'chat_history'):
+            session_state.chat_history = []
+        if not hasattr(session_state, 'generated'):
+            session_state.generated = []
+        if not hasattr(session_state, 'past'):
+            session_state.past = []
+        return session_state
 
-    if user_past not in st.session_state:
-        st.session_state[user_past] = []
+    # Define el inicio del chat con el bot
+    #chat_history = []
 
     def generate_response(prompt):
-        st.session_state[user_chat_history].append({"role": "system", "content": "Usuario: " + prompt})
+        session_state = get_session_state()
+        # Agrega la solicitud al historial del chat en un formato adecuado
+        session_state.chat_history.append({"role": "system", "content": "Usuario: " + prompt})
+        
+        # Genera una respuesta del chatbot
         response = openai.chat.completions.create(
-            model="gpt-4",
-            messages=st.session_state[user_chat_history]
+            model="gpt-3.5-turbo",
+            messages=session_state.chat_history
         )
         bot_reply = response.choices[0].message.content
         return bot_reply
 
+    session_state = get_session_state()
     st.title("Herramientas en el Aula")
 
-    user_input = st.text_input("You ", key=session_id)
-    submit_button = st.button("Enviar")
-    if submit_button and user_input:
-        output = generate_response(user_input)
-        st.session_state[user_generated].append(output)
-        st.session_state[user_past].append(user_input)
+    if 'generated' not in session_state:
+        session_state.generated = []
+
+    if 'past' not in st.session_state:
+        session_state.past = [] 
+
+    def get_text():
+        input_text = st.text_input("You ", key='input')
+        return input_text
+
+    user_input = get_text()
 
     if user_input:
         output = generate_response(user_input)
-        st.session_state[user_generated].append(output)
-        st.session_state[user_past].append(user_input)
+        session_state.generated.append(output)
+        session_state.past.append(user_input)
 
-    if st.session_state[user_generated]:
-        for i in range(len(st.session_state[user_generated])-1, -1, -1):
-            message(st.session_state[user_generated][i], key=str(i))
-            message(st.session_state[user_past][i], is_user=True, key=str(i)+'_user')
+    if session_state.generated:
+        for i in range(len(session_state.generated) - 1, -1, -1):
+            message(session_state.generated[i], key=str(i))
+            message(session_state.past[i], is_user=True, key=str(i) + '_user')
 
     st.sidebar.title("Herramientas en el Aula")
     st.sidebar.subheader("Bienvenido equipo " + name)
