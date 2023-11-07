@@ -1,0 +1,20 @@
+cookie:
+  expiry_days: 0
+  key: key
+  name: hola
+credentials:
+  usernames:
+    mary:
+      name: mary
+      password: $2b$12$Ns3q.vj5E/v7yOqyszqmX.iyWQ4a30qy3O5NsFiK7zNgpLGzCmg3a
+    paul:
+      name: paul
+      password: $2b$12$x4Y/Ifj3.9yPHLPdgAWV7eS16J0pw7fkuufCxbS0QGD0Glp7Ji.xe
+    peter:
+      name: peter
+      password: $2b$12$UpMHnBDj2mC0xM0EI4PUF.nBmpJhv786z/8mDHPqonpqcGwDPED0u
+preauthorized:
+  usernames:
+  - peter
+  - paul
+  - mary
