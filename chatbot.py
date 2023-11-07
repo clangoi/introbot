@@ -14,7 +14,7 @@ from yaml.loader import SafeLoader
 
 
 #------------------------------------------------------------
-openai.api_key = config("OPENAI_API_KEY")
+openai.api_key = st.secrets["openai"]["api_key"]
 with open('./config.yaml') as file:
     conf = yaml.load(file, Loader=SafeLoader)
 authenticator = stauth.Authenticate(
