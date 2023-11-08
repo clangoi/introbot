@@ -11,9 +11,13 @@ from pathlib import Path
 import yaml
 from yaml.loader import SafeLoader
 
-#------------------------------------------------------------
-openai.api_key = st.secrets["openai"]["api_key"]
+import os
+import time
 
+
+
+#------------------------------------------------------------
+openai.api_key = config("OPENAI_API_KEY")
 with open('./config.yaml') as file:
     conf = yaml.load(file, Loader=SafeLoader)
 authenticator = stauth.Authenticate(
@@ -57,7 +61,7 @@ if authentication_status == True:
     def generate_response(prompt):
         session_state = get_session_state()
         # Agrega la solicitud al historial del chat en un formato adecuado
-        session_state.chat_history.append({"role": "system", "content": "Usuario: " + prompt})
+        session_state.chat_history.append({"role": "user", "content": "Usuario: " + prompt})
         
         # Genera una respuesta del chatbot
         response = openai.chat.completions.create(
@@ -65,7 +69,25 @@ if authentication_status == True:
             messages=session_state.chat_history
         )
         bot_reply = response.choices[0].message.content
+        session_state.chat_history.append({"role": "system", "content": "Bot: " + bot_reply})
         return bot_reply
+
+    def guardar_historial_de_chat(chat_history, username):
+        # Genera un nombre de archivo único con el nombre de usuario y el timestamp
+        timestamp = int(time.time())
+        archivo_nombre = f"{username}_{timestamp}.txt"
+        
+        # Ruta donde se guardarán los archivos de historial
+        carpeta_historial = "./historiales_de_chat"
+        
+        # Crea la carpeta si no existe
+        if not os.path.exists(carpeta_historial):
+            os.makedirs(carpeta_historial)
+        
+        # Guarda el historial del chat en el archivo
+        with open(os.path.join(carpeta_historial, archivo_nombre), "w") as archivo:
+            for mensaje in chat_history:
+                archivo.write(f"{mensaje['role']}: {mensaje['content']}\n")
 
     session_state = get_session_state()
     st.title("Herramientas en el Aula")
@@ -81,6 +103,16 @@ if authentication_status == True:
         return input_text
 
     user_input = get_text()
+
+     # Crear un botón en la barra lateral para eliminar el historial del chat
+    if st.sidebar.button("Borrar Historial de Chat"):
+        # Llama a la función para guardar el historial del chat
+        guardar_historial_de_chat(session_state.chat_history, username)
+        chat_history = []
+        user_input = ""
+        st.session_state['generated'] = []
+        st.session_state['past'] = []
+        st.sidebar.write("Chat borrado")
 
     if user_input:
         output = generate_response(user_input)
