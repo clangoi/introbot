@@ -37,7 +37,7 @@ if authentication_status == False:
 
 if authentication_status == None:
     st.warning("Por favor, ingrese usuario y contraseña")
-    st.sidebar.image("https://kit-digital-uc-prod.s3.amazonaws.com/assets/escudos/logo-uc-02.svg", width=200)
+    st.sidebar.image("https://kit-digital-uc-prod.s3.amazonaws.com/assets/escudos/logo-uc-01.svg", width=200)
     st.sidebar.title("IntroBot Beta")
     st.sidebar.write("IntroBot es un asistente virtual que te ayudará a resolver tus dudas para desarrollar de manera más eficiente tus actividades en el ramo IIC1103-Introducción a la Programación.")
 
@@ -107,7 +107,7 @@ if authentication_status == True:
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image("https://kit-digital-uc-prod.s3.amazonaws.com/assets/escudos/logo-uc-03.svg", width=150)
+        st.image("https://kit-digital-uc-prod.s3.amazonaws.com/assets/escudos/logo-uc-01.svg", width=150)
 
     with col2:
         st.title("IntroBot - Beta")
