@@ -15,8 +15,11 @@ import os
 import time
 
 
+#st.sidebar.title("IntroBot Beta")
+#st.sidebar.write("IntroBot es un asistente virtual que te ayudará a resolver tus dudas para desarrollar de manera más eficiente tus actividades en el ramo IIC1103-Introducción a la Programación.")
 
 #------------------------------------------------------------
+#openai.api_key = config("OPENAI_API_KEY")
 openai.api_key = st.secrets["openai"]["api_key"]
 with open('./config.yaml') as file:
     conf = yaml.load(file, Loader=SafeLoader)
@@ -31,10 +34,15 @@ authenticator = stauth.Authenticate(
 name, authentication_status, username = authenticator.login("Login", "main")
 if authentication_status == False:
     st.error("Error en usuario o contraseña")
+
 if authentication_status == None:
     st.warning("Por favor, ingrese usuario y contraseña")
+    st.sidebar.image("https://kit-digital-uc-prod.s3.amazonaws.com/assets/escudos/logo-uc-03.svg", width=200)
+    st.sidebar.title("IntroBot Beta")
+    st.sidebar.write("IntroBot es un asistente virtual que te ayudará a resolver tus dudas para desarrollar de manera más eficiente tus actividades en el ramo IIC1103-Introducción a la Programación.")
 
 if authentication_status == True:
+    
     session_id = str(uuid.uuid1())  # Genera un identificadxr de sesión único para este usuario
     user_chat_history = session_id + "_chat_history"
     user_generated = session_id + "_generated"
@@ -44,6 +52,7 @@ if authentication_status == True:
         st.session_state[user_chat_history] = []
 
 #------------------------------------------------------------
+    
     def get_session_state():
     # Crea una instancia de SessionState para cada usuario
         session_state = st.session_state
@@ -89,9 +98,21 @@ if authentication_status == True:
             for mensaje in chat_history:
                 archivo.write(f"{mensaje['role']}: {mensaje['content']}\n")
 
+    st.sidebar.title("IntroBot Beta")
+    st.sidebar.write("IntroBot es un asistente virtual que te ayudará a resolver tus dudas para desarrollar de manera más eficiente tus actividades en el ramo IIC1103-Introducción a la Programación.")
+    st.sidebar.header("¡Bienvenido equipo " + name + "!")
+    
     session_state = get_session_state()
-    st.title("Herramientas en el Aula")
 
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.image("https://kit-digital-uc-prod.s3.amazonaws.com/assets/escudos/logo-uc-03.svg", width=150)
+
+    with col2:
+        st.title("IntroBot - Beta")
+
+    
     if 'generated' not in session_state:
         session_state.generated = []
 
@@ -99,13 +120,13 @@ if authentication_status == True:
         session_state.past = [] 
 
     def get_text():
-        input_text = st.text_input("You ", key='input')
+        input_text = st.text_area("Escribe tus consultas ", key='input')
         return input_text
 
     user_input = get_text()
 
      # Crear un botón en la barra lateral para eliminar el historial del chat
-    if st.sidebar.button("Borrar Historial de Chat"):
+    if st.sidebar.button("Iniciar nuevo chat"):
         # Llama a la función para guardar el historial del chat
         guardar_historial_de_chat(session_state.chat_history, username)
         chat_history = []
@@ -114,17 +135,20 @@ if authentication_status == True:
         st.session_state['past'] = []
         st.sidebar.write("Chat borrado")
 
+    st.sidebar.caption("Iniciar nuevo chat, borrará el chat actual y comenzará uno nuevo")
+
     if user_input:
-        output = generate_response(user_input)
-        session_state.generated.append(output)
-        session_state.past.append(user_input)
+        if user_input.strip():
+            output = generate_response(user_input)
+            session_state.generated.append(output)
+            session_state.past.append(user_input)
 
     if session_state.generated:
         for i in range(len(session_state.generated) - 1, -1, -1):
             message(session_state.generated[i], key=str(i))
             message(session_state.past[i], is_user=True, key=str(i) + '_user')
 
-    st.sidebar.title("Herramientas en el Aula")
-    st.sidebar.subheader("Bienvenido equipo " + name)
-
     authenticator.logout("Logout", "sidebar")
+    st.sidebar.caption("Para dudas, comentarios o más información escríbenos a cagonzalez24@uc.cl")
+
+    
