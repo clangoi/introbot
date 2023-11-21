@@ -88,7 +88,7 @@ if authentication_status == True:
         data = [[username],[timestamp]]
         if len(chat_history) > 0:
             for mensaje in chat_history:
-                data += [[f"{mensaje['role']}:"], [f"{mensaje['content']}\n"]]
+                data += [[[f"{mensaje['role']}:"], [f"{mensaje['content']}\n"]]]
             conn.create(worksheet=f"{username}_{timestamp}", data=data)
             return
         else:
