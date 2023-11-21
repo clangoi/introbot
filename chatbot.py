@@ -21,8 +21,8 @@ from streamlit_gsheets import GSheetsConnection
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 openai.api_key = st.secrets["openai"]["api_key"]
-
-conf = st.secrets
+with open('./config.yaml') as file:
+    conf = yaml.load(file, Loader=SafeLoader)
 authenticator = stauth.Authenticate(
     conf['credentials'],
     conf['cookie']['name'],
@@ -30,6 +30,7 @@ authenticator = stauth.Authenticate(
     conf['cookie']['expiry_days'],
     conf['preauthorized']
 )
+
 
 name, authentication_status, username = authenticator.login("Login", "main")
 if authentication_status == False:
