@@ -125,6 +125,7 @@ if authentication_status == True:
     if st.sidebar.button("Iniciar nuevo chat"):
         # Llama a la función para guardar el historial del chat
         guardar_historial_de_chat(session_state.chat_history, username)
+        user_input = ""
         st.session_state["chat_history"] = []
         st.session_state['generated'] = []
         st.session_state['past'] = []
