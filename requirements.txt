@@ -5,4 +5,4 @@ uuid
 streamlit_authenticator
 pyyaml
 yamlloader
-GSheetsConnection
+st-gsheets-connection
