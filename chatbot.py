@@ -121,11 +121,21 @@ if authentication_status == True:
 
     user_input = get_text()
 
-     # Crear un botón en la barra lateral para eliminar el historial del chat
+    if st.button("Enviar"):
+        output = generate_response(user_input)
+        session_state.generated.append(output)
+        session_state.past.append(user_input)
+
+   
+    if session_state.generated:
+        for i in range(len(session_state.generated) - 1, -1, -1):
+            message(session_state.generated[i], key=str(i))
+            message(session_state.past[i], is_user=True, key=str(i) + '_user')
+
+    # Crear un botón en la barra lateral para eliminar el historial del chat
     if st.sidebar.button("Iniciar nuevo chat"):
         # Llama a la función para guardar el historial del chat
         guardar_historial_de_chat(session_state.chat_history, username)
-        user_input = ""
         st.session_state["chat_history"] = []
         st.session_state['generated'] = []
         st.session_state['past'] = []
@@ -133,15 +143,6 @@ if authentication_status == True:
 
     st.sidebar.caption("Iniciar nuevo chat, borrará el chat actual y comenzará uno nuevo")
 
-    if st.button("Enviar"):
-        output = generate_response(user_input)
-        session_state.generated.append(output)
-        session_state.past.append(user_input)
-
-    if session_state.generated:
-        for i in range(len(session_state.generated) - 1, -1, -1):
-            message(session_state.generated[i], key=str(i))
-            message(session_state.past[i], is_user=True, key=str(i) + '_user')
 
     authenticator.logout("Logout", "sidebar")
     st.sidebar.caption("Para dudas, comentarios o más información escríbenos a cagonzalez24@uc.cl")
