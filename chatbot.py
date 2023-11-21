@@ -79,7 +79,7 @@ if authentication_status == True:
             messages=session_state.chat_history
         )
         bot_reply = response.choices[0].message.content
-        session_state.chat_history.append({"role": "system", "content": "Bot: " + bot_reply})
+        session_state.chat_history.append({"role": "system", "content": bot_reply})
         return bot_reply
 
     def guardar_historial_de_chat(chat_history, username):
