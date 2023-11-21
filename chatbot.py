@@ -117,7 +117,7 @@ if authentication_status == True:
         session_state.past = [] 
 
     def get_text():
-        input_text = st.text_area("Escribe tus consultas ", "")
+        input_text = st.text_area("Escribe tus consultas ", "", help="Si ya apreció Running y no se actualizó la página, haga click nuevamente en el boton Enviar")
         return input_text
 
     user_input = get_text()
@@ -127,7 +127,7 @@ if authentication_status == True:
         session_state.generated.append(output)
         session_state.past.append(user_input)
 
-    st.caption("Si ya apreció Running y no se actualizó la página, haga click nuevamente en el boton Enviar")
+    st.caption()
    
     if session_state.generated:
         for i in range(len(session_state.generated) - 1, -1, -1):
