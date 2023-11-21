@@ -116,13 +116,12 @@ if authentication_status == True:
         session_state.past = [] 
 
     def get_text():
-        input_text = st.text_area("Escribe tus consultas ", key='input')
+        input_text = st.text_area("Escribe tus consultas ", "")
         return input_text
 
-    
+    user_input = get_text()
 
     if st.button("Enviar"):
-        user_input = get_text()
         output = generate_response(user_input)
         session_state.generated.append(output)
         session_state.past.append(user_input)
