@@ -5,13 +5,11 @@ from streamlit_chat import message
 from decouple import config
 import uuid
 
-import pickle
 import streamlit_authenticator as stauth
 from pathlib import Path
 import yaml
 from yaml.loader import SafeLoader
 
-import os
 import time
 
 from streamlit_gsheets import GSheetsConnection
@@ -40,8 +38,8 @@ if authentication_status == False:
 if authentication_status == None:
     st.warning("Por favor, ingrese usuario y contraseña")
     st.sidebar.image("https://kit-digital-uc-prod.s3.amazonaws.com/assets/escudos/logo-uc-01.svg", width=200)
-    st.sidebar.title("IntroBot Beta")
-    st.sidebar.write("IntroBot es un asistente virtual que te ayudará a resolver tus dudas para desarrollar de manera más eficiente tus actividades en el ramo IIC1103-Introducción a la Programación.")
+    st.sidebar.title("CodeBot Beta")
+    st.sidebar.write("CodeBot es un asistente virtual que te ayudará a resolver tus dudas en actividades de programación.")
 
 if authentication_status == True:
     
@@ -96,9 +94,9 @@ if authentication_status == True:
         
         
 
-    st.sidebar.title("IntroBot Beta")
-    st.sidebar.write("IntroBot es un asistente virtual que te ayudará a resolver tus dudas para desarrollar de manera más eficiente tus actividades en el ramo IIC1103-Introducción a la Programación.")
-    st.sidebar.header("¡Bienvenido equipo " + name + "!")
+    st.sidebar.title("CodeBot Beta")
+    st.sidebar.write("CodeBot es un asistente virtual que te ayudará a resolver tus dudas en actividades de programación.")
+    st.sidebar.header("¡Bienvenid@ " + name + "!")
     
     session_state = get_session_state()
 
@@ -108,7 +106,7 @@ if authentication_status == True:
         st.image("https://kit-digital-uc-prod.s3.amazonaws.com/assets/escudos/logo-uc-01.svg", width=150)
 
     with col2:
-        st.title("IntroBot - Beta")
+        st.title("CodeBot - Beta")
 
     
     if 'generated' not in session_state:
@@ -127,19 +125,17 @@ if authentication_status == True:
     if st.sidebar.button("Iniciar nuevo chat"):
         # Llama a la función para guardar el historial del chat
         guardar_historial_de_chat(session_state.chat_history, username)
-        chat_history = []
-        user_input = ""
+        st.session_state["chat_history"] = []
         st.session_state['generated'] = []
         st.session_state['past'] = []
-        st.sidebar.write("Chat borrado")
+        st.rerun()
 
     st.sidebar.caption("Iniciar nuevo chat, borrará el chat actual y comenzará uno nuevo")
 
-    if user_input:
-        if user_input.strip():
-            output = generate_response(user_input)
-            session_state.generated.append(output)
-            session_state.past.append(user_input)
+    if st.button("Enviar"):
+        output = generate_response(user_input)
+        session_state.generated.append(output)
+        session_state.past.append(user_input)
 
     if session_state.generated:
         for i in range(len(session_state.generated) - 1, -1, -1):
