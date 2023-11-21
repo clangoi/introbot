@@ -85,10 +85,10 @@ if authentication_status == True:
     def guardar_historial_de_chat(chat_history, username):
         # Guarda el historial del chat en database
         timestamp = int(time.time())
-        data = [[[username],[timestamp]]]
+        data = [[username, timestamp]]
         if len(chat_history) > 0:
             for mensaje in chat_history:
-                data += [[[f"{mensaje['role']}:"], [f"{mensaje['content']}\n"]]]
+                data += [[f"{mensaje['role']}:", f"{mensaje['content']}\n"]]
             conn.create(worksheet=f"{username}_{timestamp}", data=data)
             return
         else:
