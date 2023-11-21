@@ -38,6 +38,7 @@ if authentication_status == False:
 
 if authentication_status == None:
     st.warning("Por favor, ingrese usuario y contraseña")
+    st.caption("Si ya apareció Running y no se actualizó la página, haga click nuevamente en el boton Login")
     st.sidebar.image("https://kit-digital-uc-prod.s3.amazonaws.com/assets/escudos/logo-uc-01.svg", width=200)
     st.sidebar.title("CodeBot Beta")
     st.sidebar.write("CodeBot es un asistente virtual que te ayudará a resolver tus dudas en actividades de programación.")
@@ -126,6 +127,7 @@ if authentication_status == True:
         session_state.generated.append(output)
         session_state.past.append(user_input)
 
+    st.caption("Si ya apreció Running y no se actualizó la página, haga click nuevamente en el boton Enviar")
    
     if session_state.generated:
         for i in range(len(session_state.generated) - 1, -1, -1):
