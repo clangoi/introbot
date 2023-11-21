@@ -127,8 +127,6 @@ if authentication_status == True:
         output = generate_response(user_input)
         session_state.generated.append(output)
         session_state.past.append(user_input)
-
-    st.caption()
    
     if session_state.generated:
         for i in range(len(session_state.generated) - 1, -1, -1):
