@@ -4,17 +4,125 @@ cookie:
   name: hola
 credentials:
   usernames:
-    mary:
-      name: mary
-      password: $2b$12$Ns3q.vj5E/v7yOqyszqmX.iyWQ4a30qy3O5NsFiK7zNgpLGzCmg3a
-    paul:
-      name: paul
-      password: $2b$12$x4Y/Ifj3.9yPHLPdgAWV7eS16J0pw7fkuufCxbS0QGD0Glp7Ji.xe
-    peter:
-      name: peter
-      password: $2b$12$UpMHnBDj2mC0xM0EI4PUF.nBmpJhv786z/8mDHPqonpqcGwDPED0u
+    affectedDingo2:
+      name: affectedDingo2
+      password: $2b$12$PMa/5TPSUBWa4CmBUvGNWOzRfsrE9MqEv8vLyiZGcuA8U7S1XNTW6
+    ashamedSnail4:
+      name: ashamedSnail4
+      password: $2b$12$r3SRDg.Ie1S1g2Ji8JTrpuODxO8G8KuNTaQnRrgoAR/Mo98/4amRW
+    awedWildfowl5:
+      name: awedWildfowl5
+      password: $2b$12$T0leK9CD6gVhbCVGYYRkRepdYgbiQqiSE8PuB87vpMrhaIqFVumlq
+    boastfulSalt0:
+      name: boastfulSalt0
+      password: $2b$12$YEJ5OvWAD59CxC9UbLYPE.cRfuEOaXUxO9s/B/ChZtrEcInjYSZY2
+    cruelMare1:
+      name: cruelMare1
+      password: $2b$12$/IRbyHLrfmyXpssVZi6cy.OgEjcfI6D3PgzxOH.f3O3.4xK7T52Dm
+    debonairOatmeal3:
+      name: debonairOatmeal3
+      password: $2b$12$IKOVv74fZUMKTUuWU1N7Z.qktkgWn/QqtD4jInuchOHv.IIiScOwO
+    dopeyDunbird4:
+      name: dopeyDunbird4
+      password: $2b$12$ZSNBK5FdUUJMkZuPF4sem.ADcHfR7.85zETnN7vDfFjVSJFKSm04e
+    empathicChamois3:
+      name: empathicChamois3
+      password: $2b$12$N.Dw7xFBqVLajpBaZ1CyjuPz.zklvo2PThtFudG2nqU508ue1wt1K
+    enragedPup6:
+      name: enragedPup6
+      password: $2b$12$2YGbxGFoKCn.QBG.IPqc0.2Obp.zNYD4GbLfk1A6vFeAbL339d9/K
+    enragedTermite8:
+      name: enragedTermite8
+      password: $2b$12$.UE9gugmKhbaK4C9LPEnyu62C/jfWKxqMuE4YN.c3SzUTb.FSzt/C
+    goofyLocust4:
+      name: goofyLocust4
+      password: $2b$12$UKGL5S.CQchaQnCM9QRLl.rDaEteHBWGGGjv760jIZ0KpjWqKFqee
+    holisticViper1:
+      name: holisticViper1
+      password: $2b$12$/HU8DtGVhsSCHqa.lWb5WOIAVF6cx6AG1NizdnRzIwmX0tT72ZZwy
+    lyingCheese2:
+      name: lyingCheese2
+      password: $2b$12$HSKgtPa0k0Z5txQLxojviOegHWsxHXaWYjnORtanGVRpVKAaqO9vK
+    lyingSmelt5:
+      name: lyingSmelt5
+      password: $2b$12$kjd96z0XKWwLwZ9YKqyIEO9KWYjtbQV3U4tTAsOLv7Ug0pgRBzk/u
+    madBuck9:
+      name: madBuck9
+      password: $2b$12$JHsgnz76hRIjaQnHUqP2g./S7mAMhL8ugXZ8DOfBdKM9phcKHHwb6
+    morbidChowder8:
+      name: morbidChowder8
+      password: $2b$12$Kp0SLxJYjNVyrHl/0FTD9uckYFnyxc/6R6gc26kdR51Qu7069aYOe
+    needfulLeopard6:
+      name: needfulLeopard6
+      password: $2b$12$8TmsZ6vdth3n/htM8z4ClOaKYiQNeLLJL0/UvS0AyzTLFnk7L2nj.
+    needfulMallard7:
+      name: needfulMallard7
+      password: $2b$12$CrlZyBHsmS0KUdjUGqnhb.QQMXR.WPr0Sbp2sxv4Hewt.j5ep8Huq
+    offendedMandrill6:
+      name: offendedMandrill6
+      password: $2b$12$lSkhjexY92sLPNZFSHbJI.M337g8xwpEzDXJ1cEcMkx7KX/RZitWC
+    pleasedRelish8:
+      name: pleasedRelish8
+      password: $2b$12$zCZZ2qXs97N18krPkezpc.SM2pFkdKpMpwLSzQuNtwPRxfWjBygkO
+    pluckyIcecream4:
+      name: pluckyIcecream4
+      password: $2b$12$akxFQlWS3619kMTO3g1NiuaYfZGreCudPVdlLKdWqBWPwl0fZCdqS
+    resolvedMeerkat7:
+      name: resolvedMeerkat7
+      password: $2b$12$b.DQLumfny6lRgaSiUBv7.lpu.2V3IKnNJSTFrrsIRsXhij5RRuLy
+    solidLemur4:
+      name: solidLemur4
+      password: $2b$12$ThYmnnc5fz4SBwcUXTmhlu8KrWMGH973UiT7RuPXn8QAPfWiNPtTe
+    solidMagpie9:
+      name: solidMagpie9
+      password: $2b$12$CX3aSHEdS.3bZJwcrTBGY.pa/onVX6L6aW7bCINeNYCouonK.7omm
+    spiritedSmelt7:
+      name: spiritedSmelt7
+      password: $2b$12$7UiJBMr5pZH0RozAaqwRbOEIKqEtNdqATX5com9tBNuVZ/ML06QDa
+    trustingMallard9:
+      name: trustingMallard9
+      password: $2b$12$ggCON6968WhswD8UdyTJge656BnxTOmJWnWjSkceUKbuZjASpf.tW
+    wingedMandrill6:
+      name: wingedMandrill6
+      password: $2b$12$9PTL0YWn8Gt1c3gJa3IvM.6IJPzyg83YvV.yzFapjhqrCiEDJ9Doq
+    zestyAbalone5:
+      name: zestyAbalone5
+      password: $2b$12$NhykEcKihRrjlJVRJJXyfuamF7hjL7wbmvbAunwc6.7y8DU5.aLpC
+    zestyIguana0:
+      name: zestyIguana0
+      password: $2b$12$bY3yxqyyO3nh.IZgygTfoOSOdbNkEyrG0TbphYozVHvNQO3ICcrrO
+    zestyLemur6:
+      name: zestyLemur6
+      password: $2b$12$YHgrlPWZy77QucVQ5PDWTuSl1vvwf6q5bG1P5xWKwD7gQX/GflMCu
 preauthorized:
   usernames:
-  - peter
-  - paul
-  - mary
+  - debonairOatmeal3
+  - resolvedMeerkat7
+  - lyingCheese2
+  - needfulLeopard6
+  - morbidChowder8
+  - trustingMallard9
+  - ashamedSnail4
+  - spiritedSmelt7
+  - boastfulSalt0
+  - awedWildfowl5
+  - pleasedRelish8
+  - holisticViper1
+  - enragedPup6
+  - wingedMandrill6
+  - lyingSmelt5
+  - goofyLocust4
+  - solidMagpie9
+  - solidLemur4
+  - zestyAbalone5
+  - zestyIguana0
+  - zestyLemur6
+  - cruelMare1
+  - affectedDingo2
+  - dopeyDunbird4
+  - offendedMandrill6
+  - madBuck9
+  - pluckyIcecream4
+  - enragedTermite8
+  - empathicChamois3
+  - needfulMallard7

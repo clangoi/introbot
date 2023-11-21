@@ -21,7 +21,6 @@ from streamlit_gsheets import GSheetsConnection
 
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
-data = conn.read(worksheet="martes21")
 
 openai.api_key = st.secrets["openai"]["api_key"]
 with open('./config.yaml') as file:
