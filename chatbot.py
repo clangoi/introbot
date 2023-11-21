@@ -71,7 +71,7 @@ if authentication_status == True:
     def generate_response(prompt):
         session_state = get_session_state()
         # Agrega la solicitud al historial del chat en un formato adecuado
-        session_state.chat_history.append({"role": "user", "content": "Usuario: " + prompt})
+        session_state.chat_history.append({"role": "user", "content": prompt})
         
         # Genera una respuesta del chatbot
         response = openai.chat.completions.create(
