@@ -14,12 +14,15 @@ from yaml.loader import SafeLoader
 import os
 import time
 
-
-#st.sidebar.title("IntroBot Beta")
-#st.sidebar.write("IntroBot es un asistente virtual que te ayudará a resolver tus dudas para desarrollar de manera más eficiente tus actividades en el ramo IIC1103-Introducción a la Programación.")
+from streamlit_gsheets import GSheetsConnection
 
 #------------------------------------------------------------
 #openai.api_key = config("OPENAI_API_KEY")
+
+# Create a connection object.
+conn = st.connection("gsheets", type=GSheetsConnection)
+data = conn.read(worksheet="martes21")
+
 openai.api_key = st.secrets["openai"]["api_key"]
 with open('./config.yaml') as file:
     conf = yaml.load(file, Loader=SafeLoader)
@@ -82,21 +85,17 @@ if authentication_status == True:
         return bot_reply
 
     def guardar_historial_de_chat(chat_history, username):
+        # Guarda el historial del chat en database
+        data = []
+        for mensaje in chat_history:
+            data += [[f"{mensaje['role']}:"], [f"{mensaje['content']}\n"]]
+
         # Genera un nombre de archivo único con el nombre de usuario y el timestamp
         timestamp = int(time.time())
-        archivo_nombre = f"{username}_{timestamp}.txt"
+        conn.create(worksheet=f"{username}_{timestamp}", data=data)
+        return
         
-        # Ruta donde se guardarán los archivos de historial
-        carpeta_historial = "./historiales_de_chat"
         
-        # Crea la carpeta si no existe
-        if not os.path.exists(carpeta_historial):
-            os.makedirs(carpeta_historial)
-        
-        # Guarda el historial del chat en el archivo
-        with open(os.path.join(carpeta_historial, archivo_nombre), "w") as archivo:
-            for mensaje in chat_history:
-                archivo.write(f"{mensaje['role']}: {mensaje['content']}\n")
 
     st.sidebar.title("IntroBot Beta")
     st.sidebar.write("IntroBot es un asistente virtual que te ayudará a resolver tus dudas para desarrollar de manera más eficiente tus actividades en el ramo IIC1103-Introducción a la Programación.")
