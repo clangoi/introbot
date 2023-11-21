@@ -83,16 +83,15 @@ if authentication_status == True:
 
     def guardar_historial_de_chat(chat_history, username):
         # Guarda el historial del chat en database
-        data = []
-        for mensaje in chat_history:
-            data += [[f"{mensaje['role']}:"], [f"{mensaje['content']}\n"]]
-
-        # Genera un nombre de archivo único con el nombre de usuario y el timestamp
         timestamp = int(time.time())
-        conn.create(worksheet=f"{username}_{timestamp}", data=data)
-        return
-        
-        
+        data = [[username],[timestamp]]
+        if len(chat_history) > 0:
+            for mensaje in chat_history:
+                data += [[f"{mensaje['role']}:"], [f"{mensaje['content']}\n"]]
+            conn.create(worksheet=f"{username}_{timestamp}", data=data)
+            return
+        else:
+            return
 
     st.sidebar.title("CodeBot Beta")
     st.sidebar.write("CodeBot es un asistente virtual que te ayudará a resolver tus dudas en actividades de programación.")
